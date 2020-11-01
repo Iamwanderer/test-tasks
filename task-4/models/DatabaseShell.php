@@ -47,8 +47,8 @@ class DatabaseShell
 		$email = openssl_encrypt($email, self::$method, $key, 0, self::$iv);
 
 		$query = "INSERT INTO `phones` VALUES (
-            0, ?, ? 
-            )";
+                          0, ?, ? 
+                          )";
 
 		$stmt = self::$pdo->prepare($query);
 		return $stmt->execute(array($phone, $email));
@@ -91,14 +91,14 @@ class DatabaseShell
 
 	public function tableMaker()
 	{
-		$query = "CREATE TABLE IF NOT EXISTS `phones` (
+	    $query = "CREATE TABLE IF NOT EXISTS `phones` (
             id INT(11) NOT NULL AUTO_INCREMENT,
             phone CHAR(250) NOT NULL,
             email CHAR(250) NOT NULL,
             PRIMARY KEY (id)
-          )";
+            )";
 
-		$stmt = self::$pdo->prepare($query);
-		$stmt->execute();
+	    $stmt = self::$pdo->prepare($query);
+	    $stmt->execute();
 	}
 }
