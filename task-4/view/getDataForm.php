@@ -20,7 +20,3 @@ namespace view;
         <button type="submit" class="btn btn-primary mt-4">Submit</button>
     </form>
 </div>
-
-
-</form>
-</div>
