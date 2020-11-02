@@ -41,7 +41,7 @@ class SiteController
     public function getData()
     {
         if (!$_POST) {
-            (new Render)->Render('getDataForm', '');
+            (new Render)->Render('getDataForm');
             exit;
         }
 
