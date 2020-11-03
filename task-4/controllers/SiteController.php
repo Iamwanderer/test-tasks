@@ -8,13 +8,6 @@ use \view\Render;
 
 class SiteController
 {
-    private function sanitizer($data, $filter, $length)
-    {
-        $result = mb_substr(trim($data), 0, $length, 'UTF-8');
-        $result = filter_var($result, $filter);
-        return $result;
-    }
-
     public function getIndex()
     {
         (new DatabaseShell)->tableMaker();
@@ -33,7 +26,6 @@ class SiteController
 
         if ((new DatabaseShell)->setData($phone, $email)) {
             header('Location: /get');
-            exit;
         }
     }
 
@@ -54,23 +46,28 @@ class SiteController
         
         $result = (new DatabaseShell)->getData($email);
         header("Location: /$result");
-        exit;
     }
 
     public function successNotice()
     {
         (new Render)->Render('success');
-        exit;
     }
 
     public function absenceNotice()
     {
         (new Render)->Render('absence');
-        exit;
     }
 
     public function notFound()
     {
         header("HTTP/1.0 404 Not Found");
     }
+
+    private function sanitizer($data, $filter, $length)
+    {
+        $result = mb_substr(trim($data), 0, $length, 'UTF-8');
+        $result = filter_var($result, $filter);
+        return $result;
+    }
+
 }
